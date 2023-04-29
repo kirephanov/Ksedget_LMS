@@ -10,7 +10,7 @@ class Course(models.Model):
     course_description = models.TextField(max_length=250, verbose_name='Описание курса')
     course_category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, verbose_name='Категория')
     course_created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
-    course_age = models.ForeignKey('Age', on_delete=models.PROTECT, null=True, verbose_name='Возраст')
+    # course_age = models.ForeignKey('Age', on_delete=models.PROTECT, null=True, verbose_name='Возраст')
 
     def __str__(self):
         return self.сourse_title
@@ -29,7 +29,6 @@ class Lesson(models.Model):
     lesson_description = models.TextField(max_length=150, verbose_name='Описание урока')
     lesson_exercise = models.TextField(max_length=500, verbose_name='Задание урока')
     lesson_homework = models.TextField(max_length=500, verbose_name='Домашнее задание')
-    lesson_code_editor = models.CharField(max_length=150, verbose_name='Редактор кода')
     lesson_created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 
     def __str__(self):
@@ -53,22 +52,22 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
         ordering = ['category_title']
 
-class Age(models.Model):
-    # Класс отображает возрастное ограничение для курсов
-    age_title = models.CharField(max_length=50, verbose_name='Возраст')
+# class Age(models.Model):
+#     # Класс отображает возрастное ограничение для курсов
+#     age_title = models.CharField(max_length=50, verbose_name='Возраст')
 
-    def __str__(self):
-        return self.age_title
+#     def __str__(self):
+#         return self.age_title
 
-    class Meta:
-        verbose_name = 'Возраст'
-        verbose_name_plural = 'Возраст'
-        ordering = ['age_title']
+#     class Meta:
+#         verbose_name = 'Возраст'
+#         verbose_name_plural = 'Возраст'
+#         ordering = ['age_title']
 
 
 class Homework(models.Model):
     # Класс отображает домашние задания обучающийся
-    homework_title = models.CharField(max_length=50, default='Домашнее задание', blank=True, verbose_name='Домашнее задание') # Используется в __str__
+    homework_title = models.CharField(max_length=50, default='Домашнее задание', blank=True, verbose_name='Домашнее задание')
     homework_course = models.ForeignKey('Course', on_delete=models.PROTECT, null=True, verbose_name='Курс')
     homework_lesson = models.ForeignKey('Lesson', on_delete=models.PROTECT, null=True, verbose_name='Урок')
     homework_author = models.ForeignKey('auth.User', related_name="outputs", on_delete=models.CASCADE, verbose_name='Выполнил')
