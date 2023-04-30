@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- Баннер курса -->
+    <article>
+        <div class="course-bunner">
+            <div class="wrapper">
+                <h1 class="course-bunner__title">
+                    {{ course.сourse_title }}
+                </h1>
+            </div>
+        </div>
+    </article>
+
+    <!-- Каталог курсов -->
+    <section>
+        <div class="course-catalog-wrapper">
+            <div class="course-catalog">
+                {% for item in lessons %}
+                <a href="{% url 'lesson' item.pk %}" class="card-link">
+                    <div class="course-card course-card__open-course">
+                        <div class="course-card-container">
+                            <div class="course-card__content">
+                                <p class="course-card__title">
+                                    {{ item.lesson_title }}
+                                </p>
+                                <p class="course-card__description">
+                                    {{ item.lesson_description|truncatechars:180 }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

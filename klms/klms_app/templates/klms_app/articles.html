@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="wrapper">
+        <h1 class="page-title">Статьи</h1>
+    </div>
+
+    <!-- Статьи -->
+    <section>
+        <div class="wrapper">
+            <div class="articles">
+                {% for item in articles %}
+                <div class="article-card">
+                    <div class="article-card__bg">                       
+                        <img src="{{ item.article_photo.url }}" alt="" class="article-card__img">
+                    </div>
+                    <div class="article-card__shadow">
+                        <div class="article-card__shadow__content">
+                            <p class="article-card__title">{{ item.article_title }}</p>
+                            <a href="{% url 'open_article' item.pk %}" class="article-card__btn">Читать</a>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

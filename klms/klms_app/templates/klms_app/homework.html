@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="wrapper">
+        <h1 class="page-title">Домашнее задание</h1>
+    </div>
+
+    <!-- Форма -->
+    <section>
+        <div class="wrapper">
+            <div class="form">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-container">
+                        <div class="form-item">
+                            <label for="" class="form-label">Курс</label>
+                            <br>
+                            {{ form.homework_course }}
+                        </div>
+                        <div class="form-item">
+                            <label for="" class="form-label">Урок</label>
+                            <br>
+                            {{ form.homework_lesson }}
+                        </div>
+                        <div class="form-item">
+                            <label for="" class="form-label">Файл</label>
+                            <br>
+                            {{ form.homework_file }}
+                        </div>
+                    </div>
+                    <div class="form-btn__container">
+                        <button class="btn-reset" type="reset">Очистить</button>
+                        <button class="btn-send" type="submit">Отправить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

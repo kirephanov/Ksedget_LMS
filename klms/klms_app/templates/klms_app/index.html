@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Баннер -->
+    <article>
+        <div class="bunner">
+            <div class="wrapper">
+                <h1 class="bunner__title">Главная страница <span>Ksedget LMS</span></h1>
+            </div>
+        </div>
+    </article>
+
+    <!-- Обратная связь -->
+    <section>
+        <div class="block3">
+            <div class="wrapper">
+                <div class="block3-container">
+                    <div class="block3__title-info">
+                        <h2 class="block3__title">
+                            Обратная связь
+                        </h2>
+                        <p class="block3__description">
+                            Остались вопросы?<br>Мы ответим!
+                        </p>
+                    </div>
+                    <div class="block3__image">
+                        <img src="{% static 'images/Home page/block3.png' %}" alt="" class="block3__image-img">
+                    </div>
+                </div>
+                <div class="block3__form">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="block3__form__item">
+                            {{ form.feedback_name }}
+                        </div>
+                        <div class="block3__form__item">
+                            {{ form.feedback_email }}
+                        </div>
+                        <div class="block3__form__item">
+                            {{ form.feedback_message }}
+                        </div>
+
+                        <div class="form-error">
+                            <p class="form-error__message">{{ error }}</p>
+                        </div>
+
+                        <div class="block3__form-btn">
+                            <button type="submit" class="block3__btn-send">Отправить</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

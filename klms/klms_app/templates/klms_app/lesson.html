@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- Баннер урока -->
+    <article>
+        <div class="course-bunner">
+            <div class="wrapper">
+                <h1 class="course-bunner__title">
+                    {{ lesson.lesson_title }}
+                </h1>
+            </div>
+        </div>
+    </article>
+
+    <!-- Урок -->
+
+    <section>
+        <div class="wrapper">
+            <div class="lesson-container">
+                <div class="lesson-video">
+                    <iframe width="560" height="315" src="{{ lesson.lesson_video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="lesson-content">
+                    <div class="lesson-block">
+                        <p class="lesson-block__title">
+                            Описание урока
+                        </p>
+                        <p class="lesson-block__content">
+                            {{ lesson.lesson_description }}
+                        </p>
+                    </div>
+                    <div class="lesson-block">
+                        <p class="lesson-block__title">
+                            Задание на урок
+                        </p>
+                        <p class="lesson-block__content">
+                            {{ lesson.lesson_exercise|safe|linebreaks }}
+                        </p>
+                    </div>
+                    <div class="lesson-block">
+                        <p class="lesson-block__title">
+                            Домашнее задание
+                        </p>
+                        <p class="lesson-block__content">
+                            {{ lesson.lesson_homework|safe|linebreaks }}
+                        </p>
+                    </div>
+                    <div class="lesson-btn-container">
+                        <a href="{% url 'homework' %}" class="lesson__homework-btn">Загрузить ответ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

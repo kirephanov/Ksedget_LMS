@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="wrapper">
+        <h1 class="page-title">Курсы</h1>
+    </div>
+
+    <!-- Фильтрация -->
+    <section>
+        <div class="wrapper">
+            <div class="filter-block">
+                <div class="filter-top">
+                    <p class="filter__title">
+                        Категория
+                    </p>
+                    <div class="filter__content">
+                        <a href="{% url 'courses' %}" class="filter__link">Все курсы</a>
+                        {% for item in categories %}
+                        <a href="{% url 'courses_category' item.pk %}" class="filter__link">{{ item.category_title }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- <div class="filter-bottom">
+                    <p class="filter__title">
+                        Возраст
+                    </p>
+                    <div class="filter__content">
+                        <a href="{% url 'courses' %}" class="filter__link">Любой</a>
+                        {% for item in age %}
+                        <a href="{% url 'courses_age' item.pk %}" class="filter__link">{{ item.age_title }}</a>
+                        {% endfor %}
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Каталог курсов -->
+    <section>
+        <div class="course-catalog-wrapper">
+            <div class="course-catalog">
+                {% for item in courses %}    
+                <a href="{% url 'open_course' item.pk %}" class="card-link">
+                    <div class="course-card">
+                        <div class="course-card-container">
+                            <div class="course-card__photo">
+                                {% if item.course_icon %}
+                                <img src="{{ item.course_icon.url }}" alt="" class="course-card__photo__img">
+                                {% endif %}
+                            </div>
+                            <div class="course-card__content">
+                                <p class="course-card__title">
+                                    {{ item.сourse_title }}
+                                </p>
+                                <div class="course-card__categories">
+                                    <p class="course-card__category">
+                                        {{ item.course_category }}
+                                    </p>
+                                    <p class="course-card__category">
+                                        {{ item.course_age }}
+                                    </p>
+                                </div>
+                                <p class="course-card__description">
+                                    {{ item.course_description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
